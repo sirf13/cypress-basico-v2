@@ -94,17 +94,39 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     cy.get('#product'/*'select'*/).select('Blog').should('have.value', 'blog')
   })
 
+  //Modulo 5
   it('marca cada tipo de atendimento "feedback"', function () {
     cy.get('input[type="radio"][value="feedback"]').check().should('have.value', 'feedback')
 
   })
-  it.only('marca cada tipo de atendimento', function () {
+  it('marca cada tipo de atendimento', function () {
     cy.get('input[type="radio"]')
       .check().should('have.length', 3)
       .each(function ($radio) {
         cy.wrap($radio).check()
         cy.wrap($radio).should('be.checked')
       })
+
+  })
+
+  //modulo 6
+  it('marca ambos checkboxes, depois desmarca o último', function () {
+    cy.get('input[type="checkbox"]')
+      .check()
+      .last()
+      .uncheck()
+      .should('not.be.checked')
+
+  })
+  it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function () {
+    cy.get('#firstName').type('Nome')
+    cy.get('#lastName').type('Sobrenome')
+    cy.get('#email').type('Email@email.com')
+    cy.get('#phone-checkbox').check()
+    cy.get('#open-text-area').type('test')
+    cy.get('button[type="submit"]').click()
+
+    cy.get('.error').should('be.visible')
 
   })
 })
