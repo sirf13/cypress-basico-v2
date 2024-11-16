@@ -63,13 +63,13 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     cy.get('#open-text-area').type('test')
       .clear().should('have.value', '')
 
-      cy.contains('button', 'Enviar').click()
+    cy.contains('button', 'Enviar').click()
       .should('have.value', '')
 
   })
 
   it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function () {
-    
+
     cy.contains('button', 'Enviar').click()
 
     cy.get('.error').should('be.visible')
@@ -77,21 +77,35 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
   it('envia o formuário com sucesso usando um comando customizado', function () {
     cy.fillMandatoryFieldsAndSubmit()
-    
+
     cy.get('.success').should('be.visible')
   })
-  
+
   //modulo 4
   it('seleciona um produto (YouTube) por seu texto', function () {
-    cy.get('select').select('YouTube').should('have.value', 'youtube')
+    cy.get('#product').select('YouTube').should('have.value', 'youtube')
   })
 
   it('seleciona um produto (Mentoria) por seu valor (value)', function () {
-    cy.get('select').select(3).should('have.value', 'mentoria')
+    cy.get('#product').select(3).should('have.value', 'mentoria')
   })
-  
-  it.only('seleciona um produto (Blog) por seu índice', function () {
-    cy.get('select').select('Blog').should('have.value', 'blog')
+
+  it('seleciona um produto (Blog) por seu índice', function () {
+    cy.get('#product'/*'select'*/).select('Blog').should('have.value', 'blog')
+  })
+
+  it('marca cada tipo de atendimento "feedback"', function () {
+    cy.get('input[type="radio"][value="feedback"]').check().should('have.value', 'feedback')
+
+  })
+  it.only('marca cada tipo de atendimento', function () {
+    cy.get('input[type="radio"]')
+      .check().should('have.length', 3)
+      .each(function ($radio) {
+        cy.wrap($radio).check()
+        cy.wrap($radio).should('be.checked')
+      })
+
   })
 })
 
