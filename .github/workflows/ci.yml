@@ -1,10 +1,10 @@
 name: End-to-end tests 🧪
 on: [push]
 jobs:
+  
+  cypress-run:
       - name: Clear Cypress Cache
         run: npx cypress cache clear
-
-  cypress-run:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
