@@ -1,9 +1,10 @@
 const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
-  viewportHeight: 880,
-  viewportWidth: 1280,
+  
   e2e: {
+    viewportHeight: 880,
+    viewportWidth: 1280,
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
