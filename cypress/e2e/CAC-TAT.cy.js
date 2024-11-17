@@ -4,7 +4,7 @@ it('',function(){
   })
 */
 
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 describe('Central de Atendimento ao Cliente TAT', function () {
     beforeEach(() => {
       cy.visit('./src/index.html')
