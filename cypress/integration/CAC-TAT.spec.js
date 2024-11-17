@@ -167,9 +167,14 @@ describe('Central de Atendimento ao Cliente TAT', function () {
       .click()
     cy.contains('CAC TAT - Política de privacidade').should('be.visible')
   })
-  it.only('testa a página da política de privacidade de forma independente', function(){
+  it('testa a página da política de privacidade de forma independente', function(){
     cy.get('#privacy')
 
+  })
+
+  //modulo
+  it('', function(){
+    
   })
 })
 
