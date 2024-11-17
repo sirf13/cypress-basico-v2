@@ -17,3 +17,5 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress.config.js  # Especificando o novo arquivo de configuração
