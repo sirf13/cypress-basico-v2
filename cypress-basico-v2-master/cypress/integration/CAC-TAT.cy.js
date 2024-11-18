@@ -106,6 +106,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
       cy.tick(THREE_SECONDS_IN_MS)
 
       cy.get('.success').should('not.be.visible')
+      
     })
   
     //modulo 4
