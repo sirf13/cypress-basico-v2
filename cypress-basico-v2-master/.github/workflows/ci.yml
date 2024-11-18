@@ -1,0 +1,21 @@
+name: End-to-end tests 🧪
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Clear Cypress Cache
+        run: npx cypress cache clear
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress.config.js  # Especificando o novo arquivo de configuração
