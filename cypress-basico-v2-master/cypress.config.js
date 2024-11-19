@@ -1,20 +1,14 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
-  integration: {
-    viewportHeight: 880,
-    viewportWidth: 1280,
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
-    setupNodeEvents(on, config) {
-      return require("./cypress/plugins/index.js")(on, config);
-    },
-    specPattern: "cypress/integration/CAC-TAT.cy.js",
-  },
-
   e2e: {
+    baseUrl: 'http://localhost:60701/src/index.html', // Altere para a URL base do seu app
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    specPattern: 'cypress/integration/CAC-TAT.cy.js', // Padrão para localizar os testes
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // Configuração para plugins (opcional)
+      return require('./cypress/plugins/index.js')(on, config);
     },
   },
 });
